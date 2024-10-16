@@ -13,19 +13,32 @@ public class EnemyMovement : MonoBehaviour
     private int pathindex = 0;
     private void Start()
     {
-        target = LevelManager.main.Caminho[0];
+        target = LevelManager.main.Caminho[pathindex];
     }
     private void Update()
     {
         if(Vector2.Distance(target.position, transform.position) <= 0.1f)
         {
             pathindex++;
-            if(pathindex == LevelManager.main.Caminho.Length)
+
+           
+            if (pathindex == LevelManager.main.Caminho.Length)
             {
                 Destroy(gameObject);
                 return;
+
+            }
+            else
+            {
+
+                target = LevelManager.main.Caminho[pathindex];
             }
         }
 
+    }
+    private void FixedUpdate()
+    {
+        Vector2 direction = (target.position - transform.position).normalized;
+        rb.velocity = direction * movespeed;
     }
 }
