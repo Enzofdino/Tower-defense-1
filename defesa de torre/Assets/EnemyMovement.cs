@@ -13,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
     private int pathindex = 0;
     private void Start()
     {
-        target = LevelManager.main.Caminho[pathindex];
+        target = LevelManager.instance.Caminho[pathindex];
     }
     private void Update()
     {
@@ -22,8 +22,9 @@ public class EnemyMovement : MonoBehaviour
             pathindex++;
 
            
-            if (pathindex == LevelManager.main.Caminho.Length)
+            if (pathindex == LevelManager.instance.Caminho.Length)
             {
+                EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
 
@@ -31,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
             else
             {
 
-                target = LevelManager.main.Caminho[pathindex];
+                target = LevelManager.instance.Caminho[pathindex];
             }
         }
 

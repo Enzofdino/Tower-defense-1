@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager main;
+    public static LevelManager instance;
 
     public Transform startpoint;
     public Transform[] Caminho;
     private void Awake()
     {
-        main = this;
+        instance = this;
     }
 }
