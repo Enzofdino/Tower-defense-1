@@ -1069,7 +1069,7 @@ GameObject:
   m_Layer: 0
   m_Name: Point (3)
   m_TagString: Untagged
-  m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 7422848464349959988, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -9745,7 +9745,7 @@ MonoBehaviour:
   - {fileID: 5238293559354443362, guid: 6e79789f033574940b30d989164a5eb4, type: 3}
   baseEnemies: 8
   enemiesPerSecond: 2
-  timebetweenWaves: 5
+  timebetweenWaves: 0.5
   difficultyScallingFactor: 0.75
 --- !u!1 &1864372949
 GameObject:
@@ -10736,18 +10736,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4747535}
     m_Modifications:
-    - target: {fileID: 4242520339437879686, guid: 8196f32c14a7adc4b8e84054f3b36e22, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242520339437879686, guid: 8196f32c14a7adc4b8e84054f3b36e22, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4242520339437879686, guid: 8196f32c14a7adc4b8e84054f3b36e22, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 4242520339437879686, guid: 8196f32c14a7adc4b8e84054f3b36e22, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.73

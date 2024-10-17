@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timebetweenWaves = 5f;
     [SerializeField] private float difficultyScallingFactor = 0.75f;
     [Header("Events")]
-    public static UnityEvent onEnemyDestroy;
+    public static UnityEvent onEnemyDestroy = new  UnityEvent();
 
 
     private int currentwave = 1;
@@ -29,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Start()
     {
-        StartWave();
+        StartCoroutine(StartWave());
     }
     private void Update()
     {
@@ -44,13 +45,25 @@ public class EnemySpawner : MonoBehaviour
             enemiesAlive++;
             timesinceLastSpawn = 0f;
         }
+        if(enemiesAlive == 0 && enemiesLeftToSpawn == 0)
+        {
+            Endwave();
+        }
+    }
+    private void Endwave()
+    {
+        isSpawning = false;
+        timesinceLastSpawn = 0f;
+        currentwave++;
+        StartCoroutine(StartWave());
     }
     private void EnemyDestroyed()
     {
         enemiesAlive--;
     }
-    private void StartWave()
+    private IEnumerator StartWave()
     {
+        yield return new WaitForSeconds(timebetweenWaves);
         isSpawning = true;
         enemiesLeftToSpawn = EnemiesPerwave();
     }
