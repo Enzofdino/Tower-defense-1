@@ -6630,7 +6630,7 @@ Transform:
   m_GameObject: {fileID: 1157997768}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0.97, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6650,8 +6650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8335d64dbe38f244f8e3847ae3a4c2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretrotation: {fileID: 1157997769}
-  targetingrange: 5
+  turretrotation: {fileID: 1892509403}
+  targetingrange: 3
+  enemymask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &1171850491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9876,8 +9879,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5238293559354443362, guid: 6e79789f033574940b30d989164a5eb4, type: 3}
   baseEnemies: 8
-  enemiesPerSecond: 2
-  timebetweenWaves: 0.5
+  enemiesPerSecond: 1
+  timebetweenWaves: 5
   difficultyScallingFactor: 0.75
 --- !u!1 &1864372949
 GameObject:
