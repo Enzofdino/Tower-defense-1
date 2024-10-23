@@ -8,11 +8,15 @@ public class Turret : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform turretRotationPoint;
     [SerializeField] private LayerMask enemymask;
+    [SerializeField] private GameObject bulletprefab;
+    [SerializeField] private Transform firingpoint;
     [Header("Attribute")]
     [SerializeField] private float targetingrange = 5f;
     [SerializeField] private float rotationspeed = 10f;
+    [SerializeField] private float bps = 1f; //Balas por segundo
 
     private Transform target;
+    private float timeUntilFire;
     private void OnDrawGizmosSelected()
     {
         Handles.color = Color.cyan;
@@ -20,13 +24,35 @@ public class Turret : MonoBehaviour
     }
     private void Update()
     {
-        Findtarget();  
-
-        if (target != null)
+        if (target == null)
         {
-            RotateTowardsTarget();  
-            checktargetisrange();  
+            Findtarget();
+            return;
         }
+
+        RotateTowardsTarget();
+
+        if (!checktargetisrange())
+        {
+            target = null;
+        }
+        else
+        {
+            timeUntilFire += Time.deltaTime;
+
+            if(timeUntilFire >= 1f / bps)
+            {
+                Shoot();
+                timeUntilFire = 0f;
+            }
+        }
+    }
+    private void Shoot()
+    {
+       GameObject bulletObj = Instantiate(bulletprefab,firingpoint.position,Quaternion.identity);
+        Bullet bulletScript = bulletObj.GetComponent<Bullet>();
+
+        bulletScript.SetTarget(target);
     }
     private void Findtarget()
     {
@@ -64,7 +90,7 @@ public class Turret : MonoBehaviour
 
         // Criar a rotação do alvo e aplicá-la ao objeto
         Quaternion targetRotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationspeed);
+        turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationspeed * Time.deltaTime);
     }
 
 
